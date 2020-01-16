@@ -5,21 +5,30 @@ import Navbar from './Navbar';
 import './Palette.css';
 
 export default class Palette extends Component {
-  state = {level: 500};
+  state = {level: 500, format: 'hex'};
 
   changeLevel = level => {
     this.setState ({level});
   };
+
+  changeFormat = format => {
+    this.setState ({format});
+  };
+
   render () {
     const {colors} = this.props.pallete;
-    const {level} = this.state;
-    const coloxBoxes = colors[level].map (({hex, name}) => (
-      <ColorBox background={hex} name={name} />
+    const {level, format} = this.state;
+    const coloxBoxes = colors[level].map (({[format]: formatStr, name}) => (
+      <ColorBox background={formatStr} name={name} />
     ));
 
     return (
       <div className="Palette">
-        <Navbar level={level} changeLevel={this.changeLevel} />
+        <Navbar
+          level={level}
+          changeLevel={this.changeLevel}
+          handleFormatChange={this.changeFormat}
+        />
         <div className="Palette-colors">
           {coloxBoxes}
         </div>
