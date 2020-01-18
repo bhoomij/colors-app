@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import './Palette.css';
@@ -16,7 +15,7 @@ export default class Palette extends Component {
   };
 
   render() {
-    const { colors, paletteName, emoji } = this.props.pallete;
+    const { colors, paletteName, emoji } = this.props.palette;
     const { level, format } = this.state;
     const coloxBoxes = colors[level].map(({ [format]: formatStr, name, id }) => (
       <ColorBox background={formatStr} name={name} key={id} />
